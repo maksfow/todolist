@@ -50,7 +50,7 @@ def login_user_db(user_name, password):
         return 'Неверный номер телефона или пароль'
 
 
-#  Удаления пользователя
+#  Удаление пользователя
 def delete_user_db(user_id):
     db = next(get_db())
     user = db.query(User).filter_by(user_id=user_id).first()
@@ -62,7 +62,7 @@ def delete_user_db(user_id):
         return 'Пользователь не найден'
 
 
-# Изменения данных пользователя
+# Изменение данных пользователя
 def edit_user_info_db(user_id, edit_info, new_info):
     db = next(get_db())
 
@@ -85,5 +85,5 @@ def edit_user_info_db(user_id, edit_info, new_info):
         db.commit()
         return 'Данные успешно изменены!'
     else:
-        return 'Пользователь не найден(('
+        return 'Пользователь не найден'
 

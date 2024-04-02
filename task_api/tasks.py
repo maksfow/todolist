@@ -11,12 +11,11 @@ async def all_tasks():
 async def add_task(host_id: int, title: str, description: str, status: str, due_date: int, category: str):
     new_task_id = await add_new_task(host_id, title, description, status, due_date, category)
     return f'Успешно добавлен {new_task_id}'
-
 # Получить пользователей кто выполнил определенное задание
 @task_router.get('/task-users')
 async def get_user_tasks(title: str):
     t_u = await get_exact_users(title)
-    return  f'Успешно и вот данные {t_u}'
+    return f'Успешно и вот данные {t_u}'
 # Изменение определенного задания
 @task_router.put('/edit')
 async def edit_post(title_id:int,edit_info:str, new_info:str):

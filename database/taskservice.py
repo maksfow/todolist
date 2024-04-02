@@ -13,11 +13,10 @@ async def get_tasks():
     db = next(get_db())
     tasks = db.query(Task).all()
     return tasks
-# Получить определенное задание
+# Получить определенные задания
 async def get_exact_task(category):
     db = next(get_db())
     tasks = db.query(Task).filter_by(category=category).all()
-
     if tasks:
         task_titles = [task.title for task in tasks]
         return ', '.join(task_titles)
@@ -25,7 +24,7 @@ async def get_exact_task(category):
         return 'Ничего не найдено'
 
 
-#  Удаления задания
+#  Удаление задания
 def delete_task(title_id):
     db = next(get_db())
     task = db.query(Task).filter_by(title_id=title_id).first()
@@ -53,11 +52,9 @@ def edit_task(title_id, edit_info, new_info):
             if exact_task.user_id is None:
                 exact_task.user_id = new_info
             else:
-                 # If a user already exists, update the user_id
                 if new_info not in exact_task.user_id:
                     exact_task.user_id += ',' + new_info
-        db.commit()  # Сохраняем изменения в базе данных
-
+        db.commit()
         return 'Задание успешно изменено!'
     else:
         return 'Задание не найдено'

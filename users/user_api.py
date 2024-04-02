@@ -17,7 +17,7 @@ async def register_user(data: RegisterValidator):
 
 
 # Запрос для логина
-# main.py
+
 @user_router.post('/login')
 async def login_user(form_data: OAuth2PasswordRequestForm = Depends()):
     user = login_user_db(form_data.username, form_data.password)
